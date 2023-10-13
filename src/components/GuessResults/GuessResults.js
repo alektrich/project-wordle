@@ -9,16 +9,18 @@ function GuessResults({ guesses }) {
   return (
     <div className="guess-results">
       {rows.map((_, index) => {
-        return !!guesses[index] ? (
-          <p key={guesses[index].id} className="guess">
-            {guesses[index].letters.map((letter, i) => (
-              <span key={i} className="cell">
-                {letter}
+        const guess = guesses[index];
+
+        return !!guess.value ? (
+          <p key={guess.id} className="guess">
+            {guess.value.map((result, i) => (
+              <span key={i} className={`cell ${result.status}`}>
+                {result.letter}
               </span>
             ))}
           </p>
         ) : (
-          <p key={index} className="guess">
+          <p key={guess.id} className="guess">
             {columns.map((_, i) => (
               <span key={i} className="cell"></span>
             ))}
